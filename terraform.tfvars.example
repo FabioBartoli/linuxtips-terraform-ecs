@@ -1,0 +1,46 @@
+# Exemplo de configuração das variáveis
+# Copie este arquivo para terraform.tfvars se precisar sobrescrever valores padrão
+
+# Região AWS (já configurada por padrão)
+# aws_region = "us-east-1"
+
+# Nome do projeto (já configurado por padrão)
+# project_name = "linuxtips-sorteador"
+
+# Porta do container (já configurada por padrão para 5000)
+# container_port = 5000
+
+# CPU para a task (já configurada por padrão para 256 = 0.25 vCPU)
+# task_cpu = 256
+
+# Memória para a task em MB (já configurada por padrão para 512MB)
+# task_memory = 512
+
+# Número de instâncias do serviço (já configurado por padrão para 1)
+# service_desired_count = 1
+
+# Número mínimo de instâncias (já configurado por padrão para 1)
+# service_min_count = 1
+
+# Número máximo de instâncias (já configurado por padrão para 2)
+# service_max_count = 2
+
+# ARN do certificado SSL (já configurado por padrão)
+# certificate_arn = "arn:aws:acm:us-east-1:760337697893:certificate/ee0b5431-5663-467f-9f26-f61c54e3ae68"
+
+# Tags comuns (já configuradas por padrão)
+# common_tags = {
+#   Project     = "linuxtips-sorteador"
+#   Environment = "production"
+#   ManagedBy   = "terraform"
+#   Owner       = "fabio"
+# }
+
+# NOTA: Esta stack busca automaticamente os IDs da VPC e subnets
+# do SSM Parameter Store usando os seguintes caminhos:
+# - VPC: /linuxtips-k8s-vpc/vpc/id
+# - Subnets Públicas: /linuxtips-k8s-vpc/subnets/public/us-east-1*/linuxtips-k8s-public-1*
+# - Subnets Privadas: /linuxtips-k8s-vpc/subnets/private/us-east-1*/linuxtips-k8s-private-1*
+#
+# Você pode executar terraform plan e terraform apply diretamente
+# sem precisar criar um arquivo terraform.tfvars.
