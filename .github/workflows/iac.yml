@@ -3,6 +3,10 @@ name: Cria Infra do Terraform
 on:
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   plan:
     uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-plan.yml@main
