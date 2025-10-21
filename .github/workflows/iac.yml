@@ -2,6 +2,14 @@ name: Cria Infra do Terraform
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: "Escolha o que acontece no run deste workflow"
+        type: choice
+        options:
+          - apply
+          - destroy
+        default: apply
 
 permissions:
   id-token: write
@@ -9,6 +17,7 @@ permissions:
 
 jobs:
   plan:
+    if: ${{ inputs.action == 'apply' }}
     uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-plan.yml@main
     with:
       working-directory: ./iac
@@ -17,9 +26,17 @@ jobs:
 
   apply:
     needs: plan
-    if: ${{ needs.plan.result == 'success' }}
+    if: ${{ needs.plan.result == 'success' && inputs.action == 'apply' }} }}
     uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-apply.yml@main
     with:
       working-directory: ./iac
     secrets: 
+      AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+
+  destroy_apply:
+    if: ${{ inputs.action == 'destroy' }}
+    uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-destroy.yml@main
+    with:
+      working-directory: ./iac
+    secrets:
       AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
