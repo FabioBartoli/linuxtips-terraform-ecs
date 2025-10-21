@@ -18,7 +18,7 @@ jobs:
   apply:
     needs: plan
     environment: tfapprove
-    uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-plan.yml@main
+    uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-apply.yml@main
     with:
       working-directory: ./iac
     secrets: 
