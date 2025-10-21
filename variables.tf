@@ -49,7 +49,7 @@ variable "service_max_count" {
 variable "certificate_arn" {
   description = "ARN do certificado SSL para o ALB"
   type        = string
-  default     = "arn:aws:acm:us-east-1:760337697893:certificate/ee0b5431-5663-467f-9f26-f61c54e3ae68"
+  default     = "arn:aws:acm:us-east-1:760337697893:certificate/d7fc9463-792e-4f15-9d0d-0dfab0789c02"
 }
 
 variable "common_tags" {

@@ -8,11 +8,6 @@ output "alb_dns_name" {
   value       = aws_lb.app.dns_name
 }
 
-output "app_domain" {
-  description = "Domínio da aplicação"
-  value       = aws_route53_record.app.name
-}
-
 output "ecs_cluster_name" {
   description = "Nome do cluster ECS"
   value       = aws_ecs_cluster.main.name
