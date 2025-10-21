@@ -1,0 +1,11 @@
+name: Cria Infra do Terraform
+
+on:
+  workflow_dispatch:
+
+job:
+  plan:
+    uses: FabioBartoli/linuxtips-terraform-reusable@main
+    with:
+      working-directory: ./iac
+    secrets: ${{ secrets.AWS_ROLE_TO_ASSUME }}
