@@ -18,7 +18,6 @@ jobs:
   apply:
     needs: plan
     if: ${{ needs.plan.result == 'success' }}
-    environment: tfapprove
     uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-apply.yml@main
     with:
       working-directory: ./iac
