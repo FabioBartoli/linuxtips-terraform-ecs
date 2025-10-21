@@ -17,7 +17,7 @@ jobs:
 
   apply:
     needs: plan
-    if: ${{ jobs.plan.conclusion == 'success' }}
+    if: ${{ jobs.plan.result == 'success' }}
     environment: tfapprove
     uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-apply.yml@main
     with:
