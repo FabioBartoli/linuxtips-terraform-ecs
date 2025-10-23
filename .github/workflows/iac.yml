@@ -10,33 +10,20 @@ on:
           - apply
           - destroy
         default: apply
+      directory:
+        description: "Diretorio onde esta o codigo Terraform"
+        type: string
+        default: "./iac"
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  plan:
-    if: ${{ inputs.action == 'apply' }}
-    uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-plan.yml@main
+  terraform-job:
+    uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/template.yml@main
     with:
-      working-directory: ./iac
-    secrets: 
-      AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-
-  apply:
-    needs: plan
-    if: ${{ needs.plan.result == 'success' && inputs.action == 'apply' }} }}
-    uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-apply.yml@main
-    with:
-      working-directory: ./iac
-    secrets: 
-      AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-
-  destroy_apply:
-    if: ${{ inputs.action == 'destroy' }}
-    uses: FabioBartoli/linuxtips-terraform-reusable/.github/workflows/terraform-destroy.yml@main
-    with:
-      working-directory: ./iac
+      action: ${{ inputs.action }}
+      working-directory: ${{ inputs.working-directory }}
     secrets:
       AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
