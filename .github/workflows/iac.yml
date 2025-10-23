@@ -10,7 +10,7 @@ on:
           - apply
           - destroy
         default: apply
-      directory:
+      working-directory:
         description: "Diretorio onde esta o codigo Terraform"
         type: string
         default: "./iac"
